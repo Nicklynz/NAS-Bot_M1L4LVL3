@@ -13,6 +13,11 @@ class Pokemon:
         self.attack = None
         self.defence = None
         self.speed = None
+        number_to_get = random.randint(1, 2048)
+        if number_to_get == random.randint(1, 2048):
+            self.shiny = True
+        else:
+            self.shiny = False
         if pokemon_trainer not in Pokemon.pokemons:
             Pokemon.pokemons[pokemon_trainer] = self
         else:
@@ -121,6 +126,10 @@ class Pokemon:
             async with session.get(url) as response:  # Sending a GET request
                 if response.status == 200:
                     data = await response.json()  # Receiving and decoding JSON response
-                    return data['sprites']['front_default']  # Returning a Pokémon's img
+                    match self.shiny:
+                        case True:
+                            return data['sprites']['front_shiny']  # Returning a shiny Pokémon's img
+                        case _:
+                            return data['sprites']['front_default']  # Returning a Pokémon's img
                 else:
                     pass

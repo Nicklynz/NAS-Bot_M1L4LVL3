@@ -26,6 +26,8 @@ async def go(ctx):
         pokemon = Pokemon(author)  # Creating a new Pokémon
         await ctx.send(await pokemon.info())  # Sending information about the Pokémon
         image_url = await pokemon.show_img()  # Getting the URL of the Pokémon image
+        if pokemon.shiny == True:
+            await ctx.send("Congrats! You got an ultra-rare shiny Pokémon!")
         if image_url:
             embed = discord.Embed()  # Creating an embed message
             embed.set_image(url=image_url)  # Setting up the Pokémon's image
