@@ -13,8 +13,7 @@ class Pokemon:
         self.attack = None
         self.defence = None
         self.speed = None
-        number_to_get = random.randint(1, 2048)
-        if number_to_get == random.randint(1, 2048):
+        if 1 == random.randint(1, 2048):
             self.shiny = True
         else:
             self.shiny = False
